@@ -178,9 +178,9 @@ def economic_calendar(
 
         end_date = datetime.strptime(to_date, "%d/%m/%Y")
 
-        if start_date >= end_date:
+        if start_date > end_date:
             raise ValueError(
-                "ERR#0032: to_date should be greater than from_date, both formatted as"
+                "ERR#0032: to_date should be equal to from_date or greater than from_date, both formatted as"
                 " 'dd/mm/yyyy'."
             )
 
