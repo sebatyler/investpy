@@ -145,7 +145,11 @@ def economic_calendar(
             "ERR#0139: the introduced lang value must be a string unless it is None."
         )
 
-    url = "https://www.investing.com/economic-calendar/Service/getCalendarFilteredData"
+    host = "www.investing.com"
+    if lang == "korean":
+        host = "kr.investing.com"
+
+    url = f"https://{host}/economic-calendar/Service/getCalendarFilteredData"
 
     headers = {
         "User-Agent": random_user_agent(),
@@ -247,10 +251,6 @@ def economic_calendar(
 
         if len(def_importances) > 0:
             data["importance[]"] = def_importances
-
-    # 1: english, 18: korean
-    if lang is not None:
-        data["lang"] = lang
 
     id_, last_id = 0, 0
     results = list()
